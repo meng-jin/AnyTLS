@@ -13,4 +13,4 @@ bash <(wget -qO- https://raw.githubusercontent.com/meng-jin/AnyTLS/main/Any.sh)
 
  2.交互菜单完善与优化.
 
- 3.AnyReality需要特定的版本，例如：singbox.
+ 3.AnyReality目前仅SingBox支持
