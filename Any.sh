@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-# ==============================================================================
-# 脚本名称: Sing-Box AnyTLS / AnyReality 极致优化版
-# 快捷命令: 终端直接输入 'a' 即可呼出 (强制全局注册)
-# ==============================================================================
 
 set -eo pipefail
 
@@ -62,7 +58,7 @@ force_register_shortcut() {
     chmod +x "$LOCAL_SCRIPT_PATH" 2>/dev/null || true
 
     # 2. 直接在系统的全局命令目录生成实体可执行文件 /usr/local/bin/a 与 /usr/bin/a
-    local target_paths=("/usr/local/bin/a" "/usr/bin/a")
+    local target_paths=("/usr/local/bin/any" "/usr/bin/any")
 
     for path in "${target_paths[@]}"; do
         # 如果存在旧的同名软链接或旧文件，强行删除掉
@@ -350,7 +346,7 @@ install_node() {
                 listen: "::",
                 listen_port: ($p | tonumber),
                 users: [{ password: $w }],
-                padding_scheme: ["stop=6","0=23-23","1=50-200","2=330-400,c,500-600,c,700-750,c,780-790,c,800-1200","3=1-1,2800-998","4=670-1800","5=340-600"],
+                padding_scheme: ["stop=8","0=30-80","1=100-400","2=400-500,c,500-1000,c,500-1000,c,500-1000,c,500-1000","3=9-9,500-1000","4=500-1000","5=500-1000","6=500-1000","7=500-1000"],
                 tls: {
                     enabled: true,
                     certificate_path: "/root/AnyTLS/tls/server.crt",
@@ -513,14 +509,13 @@ uninstall_all() {
 # ------------------------------------------------------------------------------
 main_menu() {
     check_root
-    # 每次运行强行刷新/注册 'a' 全局指令
     force_register_shortcut
 
     while :; do
         clear
         echo -e "${CYAN}=====================================================${NC}"
         echo -e "${BOLD}       Sing-Box (AnyTLS / AnyReality) 管理脚本       ${NC}"
-        echo -e "         快捷指令: 在终端输入 ${YELLOW}${BOLD}a${NC} 即可快速打开"
+        echo -e "         快捷指令: 在终端输入 ${YELLOW}${BOLD}any${NC} 即可快速打开"
         
         # 实时检测并在面板打出运行状态
         print_system_status
@@ -544,7 +539,7 @@ main_menu() {
             6) uninstall_all ;;
             0) 
                 clear
-                echo -e "${GREEN}感谢使用！随时输入 'a' 唤醒本脚本。${NC}"
+                echo -e "${GREEN}感谢使用！随时输入 'any' 唤醒本脚本。${NC}"
                 exit 0 
                 ;;
             *) 
